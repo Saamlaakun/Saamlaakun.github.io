@@ -1,0 +1,145 @@
+---
+title: "PENGARUH EKSPOR LADA PUTIH INDONESIA KE AMERIKA TERHADAP PERTUMBUHAN GDP IDONESIA 2012-2021"
+subtitle: "Metode Penelitian Politeknik APP Jakarta"
+author: "Maskal Adriananta Tarigan"
+date: 2023-01-18
+number-sections: true
+format:
+  html: default
+  docx: default
+editor: visual
+---
+
+## Pendahuluan
+
+### Latar belakang
+
+Gross Domestik Product (GDP/PDB) adalah sebuah metode dalam menghitung pendapatan nasional dan sebagai salah satu alat ukur atau indikator paling populer dalam menggambarkan perkembangan perekonomian dan kesejahteraan suatu negara. Angka GDP yang tinggi diartikan dengan tingginya angka produksi. Tingginya angka produksi dihubungkan kepada daya beli masyarakat yang juga tinggi. Inilah mengapa ketika angka PDB naik, muncul anggapan bahwa negara tersebut juga semakin sejahtera
+
+Oleh karena itu pada penelitian ini ingin membahas seberapa besar pengaruh ekspor lada Indonesia ke Amerika terhadap pertumbuhan GDP yang terjadi di tahun 2017-2021 sebagai acuan untuk melihat seberapa besar keuntungan Indonesia dalam ekspor ladanya ke Amerika, atau bahkan Ekspor lada ke Amerika hanya berpengaruh kecil terhadap pertumbuhan GDP yang terjadi.
+
+### Ruang lingkup
+
+Lingkup pembahasan dalam penelitian ini adalah banyaknya jumlah ekspor lada putih Indonesia yang di ekspor ke Amerika selama periode tahun 2012-2021 yang dibandingkan dengan jumlah GDP Indonesia dalam periode yang sama, data data yang dikumpulkan didapat dari World Trade Bank dan BPS.
+
+### Rumusan masalah
+
+Perumusan masalah dari laporan ini adalah sebagai berikut :
+
+1.  Bagaimana keunggulan lada Indonesia di pasar Amerika?
+2.  Apakah Indonesia harus mempertahankan ekspor nya atau tidak?
+3.  Bagaimana pengaruh Ekspor nya terhadap GDP Indonesia?
+
+### Tujuan dan manfaat penelitian
+
+Tujuan dari penelitian ini adalah untuk mengetahui seberapa besar pengaruh ekspor lada putih Indonesia ke Amerika dalam periode tahun 2012-2021 terhadap GDP Indonesia dalam periode yang sama dan juga pembaca dapat mengetahui bahwa ekspor lada yang dilakukan Indonesia berpotensi baik dan layak untuk dimaksimalkan dalam kapasitas ekspornya ke Amerika.\
+Manfaat penelitian ini agar Pembaca mengerti seberapa besar pengaruh ekspor lada yang dilakukan pemerintah maupun masyarakat sipil terhadap GDP Indonesia.
+
+### Package
+
+Packages yang digunakan antara lain sebagai berikut:
+
+```{r}
+setwd('D:/Metopel/Latihan')
+library(tidyverse)
+library(readxl)
+library(writexl)
+```
+
+## Studi pustaka
+
+**A. Deskripsi Teori**
+
+**1. Analisis pengaruh Ekspor, FDI dan Inflasi terhadap pertumbuhan Ekonomi di Indonesia**
+
+Eksporberpengaruh secara signifikan dan negatif terhadap pertumbuhan ekonomi. Variandekomposisi pertumbuhan ekonomi menunjukkan bahwa ekspor memberikan kontribusi fluktuatif hingga periode ke-10 terhadap pertumbuhan ekonomi. Dari periode ke-11 hingga periode ke-35 kontribusi ekspor terhadap pertumbuhan ekonomi terus semakin menurun. Shock ekspor direspon stabil di titik ekuilibrium oleh pertumbuhan ekonomi
+
+**2. Analisis pengaruh ekspor terhadap pertumbuhan ekonomi indonesia**
+
+Ekspor merupakan salah satu faktor terjadinya peningkatan pertumbuhan ekonomi suatu negara, sejalan dengan hipotesis *export-led growth* (ELG).
+
+## Metode penelitian
+
+### Data
+
+**1. Data GDP dan Ekspor lada Indonesia ke Amerika tahun 2012-2021**
+
+| Tahun | Jumlah Ekspor (ton) | GDP Indonesia    |
+|-------|---------------------|------------------|
+| 2012  | 3735,6              | 912524136718,018 |
+| 2013  | 3307,2              | 890814755233,225 |
+| 2014  | 1586,1              | 860854235065,079 |
+| 2015  | 1948,4              | 931877364177,742 |
+| 2016  | 1586,1              | 1015618742565,81 |
+| 2017  | 2607,0              | 931877364177,742 |
+| 2018  | 2049,0              | 1015618742565,81 |
+| 2019  | 2356,0              | 1042271531011,99 |
+| 2020  | 2824,5              | 1119099868265,25 |
+| 2021  | 2818,7              | 1058688935454,78 |
+
+: Dari data diatas dapat dilihat bahwa Ekspor lada Indonesia ke Amerika pada tahun 2012-2021 memiliki jumlah yang sangat besar, bahkan Amerika adalah negara ke dua terbesar ekspor Indonesia dalam komoditi lada putih. juga di dalam tabel diatas di tunjukkan besaran GDP Indonesia.
+
+![](poltekapp.jpg)
+
+penelitian ini menggunakan data angka GDP Indonesia dan jumlah Ekspor Indonesia ke Amerika 2012-2021
+
+```{r}
+library(readxl)
+dat<-read_excel('gdplong.xlsx')
+head(dat)
+```
+
+```{r}
+#| label: fig-mpg
+#| fig-cap: "City and highway mileage for 38 popular models of cars.Color by number of cylinders"
+plot(dat$ekspor,dat$gdp,xlab="ekspor",ylab="gdp")
+```
+
+### Metode analisis
+
+Metode yang dipilih adalah regresi univariat atau Ordinary Least Square (OLS) dengan 1 variabel independen. Penelitian ini merbaksud mencari hubungan antara Ekspor Indonesia ke Amerika (ekspor) dan GDP Indonesia (gdp). Spesifikasi yang dilakukan adalah:
+
+$$
+y_{t}=\beta_0 + \beta_1 x_t+\mu_t
+$$ di mana $y_t$ adalah "ekspor" dan $x_t$ adalah "gdp".
+
+## Pembahasan
+
+### Pembahasan masalah
+
+Dikarenakan pada penelitian ini saya menggunakan metode OLS, maka saya hanya menghubungkan angka Eskpor Indonesia ke Amerika 2012-2021 denga angka GDP indonesia pada periode yang sama
+
+```{r}
+library(readxl)
+dat<-read_excel('gdplong.xlsx')
+head(dat)
+```
+
+### Analisis masalah
+
+Dapat dilihat dari tabel di bawah ini adalah hasil regresi
+
+```{r}
+library(readxl)
+reg1<-lm(gdp~ekspor,data=dat)
+summary(reg1)
+```
+
+## Kesimpulan
+
+Dari hasil regresi diatas dapat diketahui bahwa rata rata ekspor lada putih Indonesia ke Amerika berpengaruh sebesar -2.786e+06 (Rp.2.786.000.000) terhadap GDP Indonesia. Nilai tersebut berpartisipasi sebesar 0,0315% terhadap total keseluruhan GDP Indonesia, dalam hal ini dapat dikatakan Ekspor lada putih Indonesia ke Amerika memberikan dampak yang besar terhadap GDP Indonesia. Jika peringkatnya Amerika adalah negara terbesar kedua dalam Ekspor lada putih Indonesia.
+
+**Saran**
+
+Amerika merupakan ladang besar bagi Indonesia dalam ekspor komoditas lada putih, maka dari itu sebaiknya pemerintah dan masyarakat pengekspor lada putih lebih memerhatikan kualitas agar kuantitas ekspornya dapat meningkat juga memberikan peningkatan yang lebih besar terhadap GDP Indonesia.
+
+## Referensi
+
+Ginting, Ari Mulianta ( Vol 11 No 1 2017) Analisis Pengaruh Ekspor Terhadap Pertumbuhan Ekonomi Indonesia\
+http://jurnal.kemendag.go.id/bilp/article/view/185
+
+Herwanti, Lili ( Vol. 5 No. 11 ) Pengaruh Ekspor dan Impor Terhadap Pertumbuhan Ekonomi Indonesia \
+https://jiip.stkipyapisdompu.ac.id/jiip/index.php/JIIP/article/view/1146
+
+Artha, Bhenu ( Vol. 4 No.2 2021) Pengaruh Ekspor Terhadap Gross Domestic Product \
+https://ojs.ejournalunigoro.com/index.php/JEMeS/article/view/248
